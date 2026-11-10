@@ -1,5 +1,7 @@
 # Morph — File Alchemy
 
+**Live demo:** https://jimmerioles.github.io/morph/
+
 A single-screen prototype of a file converter whose hero **is** the converter. Drop a file onto the transmuter; it is shredded into glyphs, pulled through a copper-and-glass chamber, and rebuilt as another format. The result drops out with a ding.
 
 ![Morph — file alchemy](docs/morph-idle.webp)
