@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0705" />
+    <meta
+      name="description"
+      content="Morph is a local file transmuter. Drop a file into the chamber and it comes out the other side in another format — no uploads, no accounts."
+    />
+    <title>Morph — Turn anything into anything.</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0705'/%3E%3Ccircle cx='32' cy='32' r='19' fill='none' stroke='%23d89a5d' stroke-width='2'/%3E%3Cpath d='M32 16l13 16-13 16-13-16z' fill='none' stroke='%23f1e5d0' stroke-width='1.6'/%3E%3Ccircle cx='32' cy='32' r='2.4' fill='%23e9b475'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="page">
+      <header class="nav">
+        <a class="brand" href="/" aria-label="Morph home">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <circle cx="16" cy="16" r="12.5" />
+            <path d="M16 5.5 25.5 16 16 26.5 6.5 16Z" />
+            <circle cx="16" cy="16" r="2.1" class="brand-pin" />
+          </svg>
+          <span class="brand-word">Morph<span class="brand-dot">.</span></span>
+          <span class="brand-sub">File alchemy</span>
+        </a>
+
+        <div class="nav-actions">
+          <span class="nav-local"><i aria-hidden="true"></i>Local only</span>
+          <button class="nav-link" id="how-open" type="button">How it works</button>
+          <button
+            class="sound"
+            id="sound"
+            type="button"
+            aria-label="Mute sound"
+            aria-pressed="false"
+          >
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M3.5 7.6h2.7L10 4.5v11l-3.8-3.1H3.5z" />
+              <path
+                class="wave"
+                d="M12.9 7.2a3.9 3.9 0 0 1 0 5.6M15.2 4.9a7.2 7.2 0 0 1 0 10.2"
+                fill="none"
+              />
+              <path class="slash" d="m13.4 7.6 4.2 4.8m0-4.8-4.2 4.8" fill="none" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="hero" aria-labelledby="headline">
+          <div class="intro">
+            <p class="eyebrow">
+              <span class="eyebrow-star" aria-hidden="true">✶</span>
+              File alchemy, in your browser
+            </p>
+            <h1 id="headline">Turn anything<br /><em>into anything.</em></h1>
+            <p class="subcopy">
+              Drop a file into the transmuter. It is shredded into glyphs, recast, and
+              returned in a new form — smaller, cleaner, ready to go.
+            </p>
+
+            <div class="examples" aria-hidden="true">
+              <span>PNG <i>→</i> WEBP</span>
+              <span>CSV <i>→</i> JSON</span>
+              <span>PDF <i>→</i> PNG</span>
+            </div>
+
+            <div class="local-proof">
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <rect x="3.2" y="7" width="9.6" height="6.6" rx="1.4" />
+                <path d="M5.4 7V5.2a2.6 2.6 0 0 1 5.2 0V7" fill="none" />
+                <circle cx="8" cy="10.2" r="0.9" class="lock-pin" />
+              </svg>
+              <span><strong>Nothing leaves this tab.</strong> The chamber runs on your machine.</span>
+            </div>
+          </div>
+
+          <div class="workbench">
+            <div class="stage" id="stage">
+              <canvas id="chamber-canvas" aria-hidden="true"></canvas>
+
+              <div class="stage-engraving top" aria-hidden="true">
+                <span>Transmuter</span><span>Mk I</span>
+              </div>
+
+              <div class="drop-aura" aria-hidden="true"></div>
+
+              <button
+                class="drop-core"
+                id="drop-core"
+                type="button"
+                aria-label="Drop a file or click to browse. Output format WebP."
+              >
+                <svg class="core-sigil" viewBox="0 0 80 80" aria-hidden="true">
+                  <circle cx="40" cy="40" r="29" />
+                  <path d="M40 11.5 58.5 40 40 68.5 21.5 40Z" />
+                  <path d="M40 28v24M28 40h24" />
+                  <circle cx="40" cy="40" r="2.6" class="core-pin" />
+                </svg>
+                <span class="core-title" id="core-title">Drop a file</span>
+                <span class="core-hint">or click to browse</span>
+                <span class="core-target">Into <b id="core-target">WEBP</b></span>
+              </button>
+
+              <div class="file-card" id="file-card" hidden aria-hidden="true">
+                <span class="file-thumb" id="file-thumb"><span id="file-ext">PNG</span></span>
+                <span class="file-copy">
+                  <span class="file-name" id="file-name"></span>
+                  <span class="file-meta" id="file-meta"></span>
+                </span>
+                <span class="file-mark" aria-hidden="true">↓</span>
+              </div>
+
+              <div class="chamber-progress" id="chamber-progress" hidden aria-hidden="true">
+                <span class="progress-word" id="progress-word">Shredding</span>
+                <span class="progress-sub" id="progress-sub">Separating the essence</span>
+                <span class="progress-pct" id="progress-pct">0%</span>
+                <span class="progress-track"><span id="progress-fill"></span></span>
+              </div>
+
+              <div
+                class="result-panel"
+                id="result-panel"
+                tabindex="-1"
+                aria-labelledby="result-title"
+                hidden
+              >
+                <div class="result-head">
+                  <span class="result-kicker"><i aria-hidden="true"></i>Transmutation complete</span>
+                  <span class="result-badge" id="result-badge">REAL</span>
+                </div>
+
+                <div class="result-file">
+                  <span class="result-thumb" id="result-thumb"><span id="result-ext">WEBP</span></span>
+                  <div class="result-copy">
+                    <h2 class="result-name" id="result-title">result.webp</h2>
+                    <p class="result-route">
+                      <span id="result-from">PNG</span><i aria-hidden="true">→</i><span id="result-to">WEBP</span>
+                      <b id="result-delta">−0%</b>
+                    </p>
+                    <p class="result-size" id="result-size">— → —</p>
+                  </div>
+                </div>
+
+                <div class="result-actions">
+                  <a class="download" id="result-download" href="#" download>
+                    <svg viewBox="0 0 20 20" aria-hidden="true">
+                      <path d="M10 3v10M10 13l-3.4-3.4M10 13l3.4-3.4M4 16.5h12" fill="none" />
+                    </svg>
+                    <span>Download <span id="download-label">WebP</span></span>
+                  </a>
+                </div>
+                <p class="result-note" id="result-note"></p>
+              </div>
+
+              <div class="stage-engraving bottom" aria-hidden="true">
+                <span>No uploads</span><span>MMXXVI</span>
+              </div>
+            </div>
+
+            <div class="output-row">
+              <span class="output-label" id="output-label">Into</span>
+              <div class="formats" id="formats" role="group" aria-label="Choose an output format">
+                <button class="format" type="button" data-format="webp" aria-pressed="true">WEBP</button>
+                <button class="format" type="button" data-format="png" aria-pressed="false">PNG</button>
+                <button class="format" type="button" data-format="json" aria-pressed="false">JSON</button>
+                <button class="format" type="button" data-format="pdf" aria-pressed="false">PDF</button>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button class="primary" id="primary-action" type="button">
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M10 2.8v9.8M10 12.6 6.6 9.2M10 12.6l3.4-3.4M3.8 16.4h12.4" fill="none" />
+                </svg>
+                <span id="primary-label">Drop a file</span>
+              </button>
+              <button class="sample" id="sample-action" type="button">
+                <span class="sample-star" aria-hidden="true">✶</span>Try a sample
+              </button>
+            </div>
+
+            <p class="action-hint" id="action-hint">
+              Drag &amp; drop, paste, or open a file<span class="hint-sep">·</span>nothing is uploaded
+            </p>
+            <p class="prototype-note" id="prototype-note">
+              Real image conversion in your browser. Other file types return a labelled demo
+              artifact.
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>Morph <i>/</i> Prototype 01</span>
+        <span class="footer-center">A small act of chemistry for your files.</span>
+        <span>Canvas 2D <i>·</i> Web Audio</span>
+      </footer>
+    </div>
+
+    <input id="file-input" class="visually-hidden" type="file" tabindex="-1" />
+
+    <div class="sr-only" id="sr-status" role="status" aria-live="polite"></div>
+    <div class="toast" id="toast" hidden></div>
+
+    <dialog class="dialog" id="how-dialog" aria-labelledby="how-title">
+      <div class="sheet">
+        <div class="sheet-head">
+          <span class="sheet-eyebrow">Field notes · No. 01</span>
+          <button class="dialog-close" id="how-close" type="button" aria-label="Close">×</button>
+        </div>
+        <h2 id="how-title">A file goes in.<br /><em>Something else comes out.</em></h2>
+        <ol class="steps">
+          <li>
+            <span class="step-no">01</span>
+            <div>
+              <h3>Drop a file</h3>
+              <p>Drag it onto the chamber, paste it from the clipboard, or open the picker.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-no">02</span>
+            <div>
+              <h3>Choose a target</h3>
+              <p>Images become WebP or PNG. CSV and TSV become JSON. Everything else returns a demo artifact.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-no">03</span>
+            <div>
+              <h3>Collect the result</h3>
+              <p>The download drops out of the chamber. The original never left your device.</p>
+            </div>
+          </li>
+        </ol>
+        <p class="sheet-note">
+          <strong>This is a prototype.</strong> Image conversion and CSV → JSON run for real,
+          locally, using browser APIs. PDF output and other pairings generate a clearly labelled
+          demo artifact — a valid file, but not a true content conversion.
+        </p>
+        <p class="sheet-meta">Morph / local transmutation / no servers, no accounts</p>
+      </div>
+    </dialog>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
