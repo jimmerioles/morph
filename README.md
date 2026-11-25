@@ -4,7 +4,7 @@ File alchemy in the browser: drop a file into the chamber, get another format ou
 
 **Live demo:** https://jimmerioles.github.io/morph/
 
-https://github.com/user-attachments/assets/b952e03c-c89b-42d9-ab9f-b2d2f418eb92
+https://github.com/user-attachments/assets/8786c635-92b1-4546-9e4d-a19fb521134e
 
 Morph is a local file converter built around one interaction: drop a file on the transmuter, watch it shred into glyphs, and collect the result from the other side. The chamber is the product demo, not a video of one, and it is for anyone who wants a quick conversion without uploading a file or creating an account. It is a prototype, and it says so: images, tables, and JSON convert for real in the tab, while unsupported pairs return a valid, clearly labelled demo artifact.
 

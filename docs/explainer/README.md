@@ -12,8 +12,9 @@ happen in the tab you already have open.
 
 - 1920 x 1080, 60 fps, 2 minutes 28 seconds.
 - H.264 High profile at level 4.1, AAC 48 kHz stereo.
-- The first frame is the file-card still from 2.5 seconds. It holds for 2.5
-  seconds, then crossfades for 0.5 seconds into the film at 2.5 seconds.
+- The first frame is a 1920 x 1080 screenshot of the live demo, showing the
+  idle chamber. It holds for 2.5 seconds, then crossfades for 0.5 seconds into
+  the film at 2.5 seconds.
 - The original audio starts at zero. Duration, narration, music, and cue timing
   are unchanged.
 - The MP4 is not committed to the repository. The README uses the uploaded
