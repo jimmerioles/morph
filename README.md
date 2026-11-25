@@ -25,6 +25,7 @@ The [case study](https://jimmerioles.github.io/morph/case-study/) goes deeper on
 ```bash
 npm install
 npm run dev      # http://localhost:5173
+npm test         # run the conversion test suite
 npm run build    # tsc + vite build the app and case study
 npm run preview  # serve the production build
 ```
@@ -45,7 +46,9 @@ Morph is a static Vite + TypeScript app. `convert.ts` does the real work in the 
 
 ## Tests
 
-No automated suite yet. `npm run build` runs `tsc` and the production build; the conversion paths are checked by hand in the browser.
+`npm test` runs the Vitest suite for the conversion layer. It covers delimiter detection, quote-aware CSV and TSV parsing, JSON reformatting, filename handling, the real or demo classification, and the generated PDF structure. The suite runs in Node, so no browser or jsdom is needed. Image encoding, the rendered seal, the chamber animation, and audio are still checked by hand in the browser.
+
+`npm run build` typechecks the app and the tests, then builds the production pages.
 
 ## Limits
 

@@ -295,10 +295,13 @@ async function rasterizeImage(file: File, target: "webp" | "png"): Promise<Blob>
 
 function detectDelimiter(text: string): string {
   const firstLine = text.split(/\r?\n/, 1)[0] ?? "";
+  // Ignore delimiters inside quoted headers so a comma in `"last, first"` does
+  // not outvote the real delimiter.
+  const unquoted = firstLine.replace(/"(?:[^"]|"")*"/g, "");
   let best = ",";
   let bestCount = -1;
   for (const candidate of [",", "\t", ";", "|"]) {
-    const count = firstLine.split(candidate).length - 1;
+    const count = unquoted.split(candidate).length - 1;
     if (count > bestCount) {
       best = candidate;
       bestCount = count;
@@ -379,12 +382,17 @@ function delimitedToJson(raw: string): string {
   const headerSource = rows[0].map((cell, index) => cell.trim() || `column_${index + 1}`);
   while (headerSource.length < widest) headerSource.push(`column_${headerSource.length + 1}`);
 
-  const seen = new Map<string, number>();
+  const used = new Set<string>();
   const headers = headerSource.map((name, index) => {
     const base = name || `column_${index + 1}`;
-    const count = (seen.get(base) ?? 0) + 1;
-    seen.set(base, count);
-    return count === 1 ? base : `${base}_${count}`;
+    let header = base;
+    let suffix = 2;
+    while (used.has(header)) {
+      header = `${base}_${suffix}`;
+      suffix += 1;
+    }
+    used.add(header);
+    return header;
   });
 
   const records = rows.slice(1).map((row) => {
