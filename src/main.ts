@@ -84,7 +84,7 @@ const CAPABILITY_NOTES: Record<FormatId, string> = {
   webp: "Real image conversion to WebP in your browser. Other file types return a labelled demo artifact.",
   png: "Real image conversion to PNG in your browser. Other file types return a labelled demo artifact.",
   json: "CSV, TSV, and JSON convert for real. Other file types return a labelled demo artifact.",
-  pdf: "PDF output is a prototype demo artifact — not a true PDF conversion.",
+  pdf: "PDF output is a prototype demo artifact, not a true PDF conversion.",
 };
 
 const wait = (milliseconds: number): Promise<void> =>
@@ -357,7 +357,7 @@ async function handleFile(file: File): Promise<void> {
 
   if (file.size === 0) {
     audio.error();
-    showToast("That file is empty — there is nothing to transmute.");
+    showToast("That file is empty. There is nothing to transmute.");
     announce("That file is empty. Choose another file.");
     return;
   }

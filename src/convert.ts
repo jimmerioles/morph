@@ -59,7 +59,7 @@ export function extensionLabel(name: string): string {
 }
 
 export function formatBytes(bytes: number): string {
-  if (!Number.isFinite(bytes) || bytes < 0) return "—";
+  if (!Number.isFinite(bytes) || bytes < 0) return "unknown";
   if (bytes < 1024) return `${Math.round(bytes)} B`;
   const units = ["KB", "MB", "GB"];
   let value = bytes / 1024;
@@ -115,7 +115,7 @@ export async function convertFile(file: File, target: FormatId): Promise<Convers
         blob,
         filename,
         kind: "real",
-        note: "Real, local conversion — re-encoded in this tab with Canvas2D. Nothing was uploaded.",
+        note: "Real, local conversion. Re-encoded in this tab with Canvas2D. Nothing was uploaded.",
       };
     } catch (error) {
       console.warn("Morph: image conversion fell back to a demo artifact.", error);
@@ -131,7 +131,7 @@ export async function convertFile(file: File, target: FormatId): Promise<Convers
         blob: new Blob([json], { type: "application/json" }),
         filename,
         kind: "real",
-        note: "Real, local conversion — parsed in this tab and restructured as JSON. Nothing was uploaded.",
+        note: "Real, local conversion. Parsed in this tab and restructured as JSON. Nothing was uploaded.",
       };
     } catch (error) {
       console.warn("Morph: delimiter conversion fell back to a demo artifact.", error);
@@ -147,7 +147,7 @@ export async function convertFile(file: File, target: FormatId): Promise<Convers
         blob: new Blob([JSON.stringify(value, null, 2)], { type: "application/json" }),
         filename,
         kind: "real",
-        note: "Real, local conversion — reindented in this tab. Nothing was uploaded.",
+        note: "Real, local conversion. Reindented in this tab. Nothing was uploaded.",
       };
     } catch (error) {
       console.warn("Morph: JSON reformat fell back to a demo artifact.", error);
@@ -160,7 +160,7 @@ export async function convertFile(file: File, target: FormatId): Promise<Convers
       blob: new Blob([makeMetadataJson(file, target)], { type: "application/json" }),
       filename,
       kind: "demo",
-      note: fallbackNote || "Demo artifact — a JSON transmutation record, not a true content conversion.",
+      note: fallbackNote || "Demo artifact: a JSON transmutation record, not a true content conversion.",
     };
   }
 
@@ -169,7 +169,7 @@ export async function convertFile(file: File, target: FormatId): Promise<Convers
       blob: makePdfRecord(file, target),
       filename,
       kind: "demo",
-      note: fallbackNote || "Demo artifact — a valid one-page PDF record, not a true conversion of the source.",
+      note: fallbackNote || "Demo artifact: a valid one-page PDF record, not a true conversion of the source.",
     };
   }
 
@@ -178,7 +178,7 @@ export async function convertFile(file: File, target: FormatId): Promise<Convers
     blob: seal,
     filename,
     kind: "demo",
-    note: fallbackNote || "Demo artifact — a rendered transmutation record, not a true image conversion.",
+    note: fallbackNote || "Demo artifact: a rendered transmutation record, not a true image conversion.",
   };
 }
 

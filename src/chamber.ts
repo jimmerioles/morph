@@ -1,5 +1,5 @@
 /**
- * The transmuter chamber — everything inside the ring is drawn with Canvas2D.
+ * The transmuter chamber. Everything inside the ring is drawn with Canvas2D.
  *
  * Idle: concentric brass rings, faint glass, slow orbiting marks.
  * Ingest: card fragments become glyphs that spiral into the chamber.

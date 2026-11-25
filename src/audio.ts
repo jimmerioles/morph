@@ -1,6 +1,6 @@
 /**
  * Morph's sound design. Everything is synthesized on the fly with the
- * Web Audio API — no audio files, no network, no sound until a gesture.
+ * Web Audio API. No audio files, no network, no sound until a gesture.
  */
 
 type BrowserAudioWindow = Window & {
