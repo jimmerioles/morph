@@ -8,6 +8,9 @@ bytes, and a format is an agreement about how to read them. Once you see that,
 conversion stops looking like magic. It is translation, and the translation can
 happen in the tab you already have open.
 
+The [case study](https://jimmerioles.github.io/morph/case-study/) covers the
+build, the real/demo boundary, and the film's place in the product.
+
 ## The published cut
 
 - 1920 x 1080, 60 fps, 2 minutes 28 seconds.

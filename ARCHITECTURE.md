@@ -11,6 +11,10 @@ Morph is a static Vite + TypeScript app. There is no server, no framework, and n
 | `src/chamber.ts` | Canvas2D ring, glyph vortex, sparks, progress arc, idle dust, and visibility pausing. |
 | `src/audio.ts` | Web Audio synthesis for shred, forge, ding, and error cues. No audio files. |
 | `src/style.css` | Layout, palette, responsive rules, and reduced-motion styles. |
+| `case-study/index.html` | The long-form case study: problem, machine, film, conversion routes, performance, accessibility, limits, and next. |
+| `src/case-study.css` | Case study layout, palette, figures, tables, and responsive rules. |
+| `src/case-study.ts` | Reading progress and the sticky top bar's scrolled state. |
+| `public/case-study/morph-explainer.vtt` | English captions for the embedded explainer. |
 
 ## Conversion path
 
@@ -29,6 +33,12 @@ Demo paths:
 
 The demo paths produce valid files. They are never presented as a successful content conversion.
 
+## Case study
+
+`npm run build` has two HTML entries: `index.html` for the app and `case-study/index.html` for the long-form page. The case study is static HTML and CSS with a small progress script. It embeds the explainer from its GitHub attachment and ships local captions in `public/case-study/morph-explainer.vtt`; the MP4 is not committed. The page follows the app's palette and type but keeps its own layout, so the app stays a single-screen experience.
+
+The case study has its own skip link, landmarks, heading order, table captions, and visible focus. Its only external media is the explainer video, requested on load as metadata or when the visitor presses play.
+
 ## Motion and sound
 
 The chamber runs a single `requestAnimationFrame` loop. It pauses when the tab is hidden or the stage leaves the viewport, using `visibilitychange` and `IntersectionObserver`. With `prefers-reduced-motion: reduce`, particle work is skipped, the canvas is static, and progress transitions are shorter. The result still arrives.
@@ -44,4 +54,4 @@ The drop target is a real button. Format chips are `aria-pressed` buttons. The h
 - One file at a time. No batch queue and no history.
 - Conversion runs on the main thread. Very large images can block the UI.
 - The input cap is 60 MB.
-- The only network request is Google Fonts. Instrument Serif and Inter both have system fallbacks.
+- The app's only network request is Google Fonts. Instrument Serif and Inter both have system fallbacks. The case study also loads the explainer from a GitHub attachment.

@@ -1,0 +1,1034 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0705" />
+    <meta
+      name="description"
+      content="Morph case study: a local file converter built around one interaction. Drop a file into a brass chamber, watch it shred into glyphs, and collect another format from the other side."
+    />
+    <link rel="canonical" href="https://jimmerioles.github.io/morph/case-study/" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:title"
+      content="Morph case study: Nothing leaves. Everything changes."
+    />
+    <meta
+      property="og:description"
+      content="A local file converter built around one interaction. The conversion runs in the tab, and the result says whether it was real or a labelled demo."
+    />
+    <meta
+      property="og:url"
+      content="https://jimmerioles.github.io/morph/case-study/"
+    />
+    <meta
+      property="og:image"
+      content="https://jimmerioles.github.io/morph/case-study/og.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Morph case study: Nothing leaves. Everything changes."
+    />
+    <meta
+      name="twitter:description"
+      content="A local file converter built around one interaction. The conversion runs in the tab, and the result says whether it was real or a labelled demo."
+    />
+    <meta
+      name="twitter:image"
+      content="https://jimmerioles.github.io/morph/case-study/og.jpg"
+    />
+    <title>Morph case study · Nothing leaves. Everything changes.</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0705'/%3E%3Ccircle cx='32' cy='32' r='19' fill='none' stroke='%23d89a5d' stroke-width='2'/%3E%3Cpath d='M32 16l13 16-13 16-13-16z' fill='none' stroke='%23f1e5d0' stroke-width='1.6'/%3E%3Ccircle cx='32' cy='32' r='2.4' fill='%23e9b475'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../src/case-study.css" />
+    <script type="module" src="../src/case-study.ts"></script>
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cs-progress" aria-hidden="true">
+      <span id="cs-progress-fill"></span>
+    </div>
+
+    <a class="cs-skip" href="#case-study-main">Skip to the case study</a>
+
+    <header class="cs-topbar" aria-label="Case study">
+      <a class="cs-brand" href="../" aria-label="Morph home">
+        <span class="cs-brand__mark">
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <circle cx="16" cy="16" r="12.5" />
+            <path d="M16 5.5 25.5 16 16 26.5 6.5 16Z" />
+            <circle cx="16" cy="16" r="2.1" class="cs-brand__pin" />
+          </svg>
+        </span>
+        <span class="cs-brand__name">Morph<span class="cs-brand__dot">.</span></span>
+        <span class="cs-brand__divider" aria-hidden="true"></span>
+        <span class="cs-brand__section">Case study</span>
+      </a>
+      <a class="cs-back" href="../">
+        <svg viewBox="0 0 16 16" class="icon" aria-hidden="true">
+          <path d="M10.5 3.5 6 8l4.5 4.5" />
+        </svg>
+        <span>Back to the transmuter</span>
+      </a>
+    </header>
+
+    <main id="case-study-main" class="cs-main" tabindex="-1">
+      <article>
+        <header class="cs-hero">
+          <div class="cs-shell">
+            <p class="cs-kicker">
+              <span class="cs-kicker__dot" aria-hidden="true"></span>
+              File alchemy / Case study
+            </p>
+            <h1 class="cs-hero__title">
+              Nothing leaves.<br />
+              <em>Everything changes.</em>
+            </h1>
+            <p class="cs-hero__lede">
+              Morph is a file converter built around one interaction: drop a
+              file into a brass chamber, watch it shred into glyphs, and collect
+              another format from the other side. The conversion runs in the tab,
+              and the result tells you whether it was real or a labelled demo.
+            </p>
+
+            <div class="cs-hero__bottom">
+              <div class="cs-actions">
+                <a class="cs-button cs-button--primary" href="../">
+                  <span>Open the transmuter</span>
+                  <svg viewBox="0 0 16 16" class="icon" aria-hidden="true">
+                    <path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6" />
+                  </svg>
+                </a>
+                <a class="cs-button cs-button--ghost" href="#film">
+                  <span>Watch the film</span>
+                  <svg viewBox="0 0 16 16" class="icon" aria-hidden="true">
+                    <path d="M5 3.2v9.6L12.4 8 5 3.2Z" fill="currentColor" />
+                  </svg>
+                </a>
+              </div>
+
+              <dl class="cs-facts">
+                <div>
+                  <dt>Role</dt>
+                  <dd>Product design and frontend</dd>
+                </div>
+                <div>
+                  <dt>Stack</dt>
+                  <dd>TypeScript, Vite, Canvas 2D</dd>
+                </div>
+                <div>
+                  <dt>Runtime</dt>
+                  <dd>Browser only, no server</dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>Prototype 01, November 2026</dd>
+                </div>
+              </dl>
+            </div>
+
+            <figure class="cs-figure cs-figure--hero">
+              <img
+                src="../src/case-study/images/hero-app.webp"
+                alt="The Morph home page at 1440 by 900, with the headline Turn anything into anything next to the idle brass transmuter chamber."
+                width="1440"
+                height="900"
+                fetchpriority="high"
+              />
+              <figcaption>
+                The live build at 1440x900. The chamber is the converter, not an
+                illustration of one.
+              </figcaption>
+            </figure>
+          </div>
+        </header>
+
+        <div class="cs-shell cs-sections">
+          <section class="cs-section" id="problem" aria-labelledby="problem-title">
+            <div class="cs-section__aside">
+              <span class="cs-section__number">01</span>
+              <p class="cs-kicker">The problem</p>
+            </div>
+            <div class="cs-section__body">
+              <h2 id="problem-title">
+                File conversion is a trust exercise in a windowless room.
+              </h2>
+              <p class="cs-lede">
+                Most online converters ask you to hand over a private file
+                before they show you anything. The upload, the queue, and the
+                download are opaque by design. Even when the result is correct,
+                you cannot see the work.
+              </p>
+              <p>
+                The web already has the translators: image decoders, Canvas2D
+                encoders, the JSON parser, and file readers. A converter can run
+                in the tab. What is missing is a reason to believe it did. Morph
+                treats the conversion itself as the interface, not a progress
+                bar bolted to a form.
+              </p>
+
+              <div class="cs-compare">
+                <h3>A converter and a magic trick</h3>
+                <p class="cs-compare__intro">
+                  Both can turn a PNG into a WebP. Only one lets you inspect the
+                  boundary.
+                </p>
+                <table>
+                  <caption class="sr-only">
+                    A comparison of a typical online converter and Morph for
+                    file location, feedback, result honesty, verifiability, and
+                    cost
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Criterion</th>
+                      <th scope="col">A typical converter</th>
+                      <th scope="col">Morph</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Where the file goes</th>
+                      <td data-label="A typical converter">
+                        Uploaded to a server you cannot see.
+                      </td>
+                      <td data-label="Morph">
+                        Stays in the tab. Nothing is sent.
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">What you watch</th>
+                      <td data-label="A typical converter">
+                        A queue, a spinner, a percentage.
+                      </td>
+                      <td data-label="Morph">
+                        Glyphs, a forge, a pulse, then the file.
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">What a result means</th>
+                      <td data-label="A typical converter">
+                        Presented as a success by default.
+                      </td>
+                      <td data-label="Morph">
+                        Marked REAL or DEMO, with a note that says why.
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">What you can check</th>
+                      <td data-label="A typical converter">
+                        The service's word.
+                      </td>
+                      <td data-label="Morph">
+                        Canvas2D, a parser, and Web Audio in the page.
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">What it asks of you</th>
+                      <td data-label="A typical converter">
+                        An account, an upload, a wait.
+                      </td>
+                      <td data-label="Morph">
+                        One file, up to 60 MB, no account.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p>
+                The comparison is not really about features. It is about where
+                the trust sits. Morph moves it into the tab, where the file
+                already is, and then shows the work so the claim is not only a
+                promise.
+              </p>
+            </div>
+          </section>
+
+          <section class="cs-section" id="machine" aria-labelledby="machine-title">
+            <div class="cs-section__aside">
+              <span class="cs-section__number">02</span>
+              <p class="cs-kicker">The machine</p>
+            </div>
+            <div class="cs-section__body">
+              <h2 id="machine-title">A converter you can watch think.</h2>
+              <p class="cs-lede">
+                The chamber has four states, and each one is tied to the
+                conversion rather than to a timer pretending to be one.
+              </p>
+              <p>
+                Idle is a brass ring with dust and a slow orbit. Ingest pulls
+                the file card apart into up to 155 glyphs. Forge tightens the
+                vortex and warms the ring. Complete sends a pulse through the
+                glass, the result panel drops in, and a small bell lands. The
+                card is real DOM, not a canvas drawing of a result.
+              </p>
+
+              <div class="cs-duo">
+                <figure class="cs-figure">
+                  <img
+                    src="../src/case-study/images/chamber-working.webp"
+                    alt="The transmuter mid-conversion, with copper glyphs spiralling inside a glowing brass ring."
+                    width="720"
+                    height="720"
+                    loading="lazy"
+                  />
+                  <figcaption>
+                    Forge. The file card is gone; the chamber is holding the
+                    shape.
+                  </figcaption>
+                </figure>
+                <figure class="cs-figure">
+                  <img
+                    src="../src/case-study/images/chamber-result.webp"
+                    alt="The result panel showing orrery-no-7.webp, a REAL badge, a 98 percent reduction, and a download button."
+                    width="720"
+                    height="720"
+                    loading="lazy"
+                  />
+                  <figcaption>
+                    Complete. A real PNG to WebP run: 1.1 MB to 26 KB, with the
+                    REAL badge and the receipt.
+                  </figcaption>
+                </figure>
+              </div>
+
+              <blockquote class="cs-statement">
+                <p>
+                  The animation is not a wrapper around the product. It is the
+                  product demo.
+                </p>
+              </blockquote>
+
+              <p>
+                The interface gets out of the way when it should. Formats are
+                disabled while the chamber is working. The result panel takes
+                focus. Changing the target after a result requires Convert
+                another, so the screen never shows a result for a setting that
+                is no longer active.
+              </p>
+
+              <div class="cs-callout">
+                <div class="cs-callout__copy">
+                  <p class="cs-callout__label">Reading the result</p>
+                  <p>
+                    <span class="cs-badge cs-badge--real">REAL</span>
+                    The content was converted in the tab: an image re-encoded, a
+                    table parsed, or JSON reformatted.
+                  </p>
+                  <p>
+                    <span class="cs-badge cs-badge--demo">DEMO</span>
+                    The file is valid, but it is a transmutation record, a
+                    metadata sheet, or a seal image. It is never presented as a
+                    successful content conversion.
+                  </p>
+                </div>
+                <figure class="cs-callout__figure">
+                  <img
+                    src="../src/case-study/images/chamber-demo.webp"
+                    alt="The result panel showing field-notes.pdf, a DEMO badge, and a note explaining that the PDF is a demo artifact."
+                    width="720"
+                    height="720"
+                    loading="lazy"
+                  />
+                  <figcaption>
+                    A demo artifact, labelled in the card and repeated in the
+                    note.
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </section>
+
+          <section class="cs-section" id="film" aria-labelledby="film-title">
+            <div class="cs-section__aside">
+              <span class="cs-section__number">03</span>
+              <p class="cs-kicker">The film</p>
+            </div>
+            <div class="cs-section__body">
+              <h2 id="film-title">
+                Two minutes and twenty-eight seconds to explain the trick.
+              </h2>
+              <p class="cs-lede">
+                Morph has a real explainer, not a screen recording with a
+                voiceover. It was built in Manim, narrated, scored, and cut
+                around the prototype's own output. The argument is the same one
+                the interface makes: a file is not a thing. It is a sequence of
+                bytes, and a format is an agreement about how to read them.
+              </p>
+
+              <figure class="cs-film">
+                <video
+                  class="cs-film__video"
+                  controls
+                  preload="metadata"
+                  poster="../src/case-study/images/film-translation.webp"
+                  width="1600"
+                  height="900"
+                >
+                  <source
+                    src="https://github.com/user-attachments/assets/9080c3d3-c0e2-44bb-b816-9a8f5256eacb"
+                    type="video/mp4"
+                  />
+                  <track
+                    kind="captions"
+                    src="./morph-explainer.vtt"
+                    srclang="en"
+                    label="English"
+                    default
+                  />
+                  <p>
+                    This browser cannot play the film here.
+                    <a
+                      href="https://github.com/jimmerioles/morph/releases/tag/explainer-v1"
+                      >Watch it from the release page</a
+                    >.
+                  </p>
+                </video>
+                <figcaption>
+                  The explainer. 1920x1080, 60 fps, 2:28, with English captions.
+                  The film is a GitHub attachment because the MP4 is not
+                  committed to the repository. If the player does not load,
+                  <a
+                    href="https://github.com/jimmerioles/morph/releases/tag/explainer-v1"
+                    >watch it from the release page</a
+                  >.
+                </figcaption>
+              </figure>
+
+              <p>
+                The film follows one PNG through the chamber, then a CSV, then
+                the honest demo case. The 1.1 MB to 26 KB and 553 B to 1.4 KB
+                figures are runs from the live build. They are single measured
+                samples, not a benchmark.
+              </p>
+
+              <div class="cs-chapters">
+                <h3>Nine beats</h3>
+                <ol>
+                  <li>
+                    <span class="cs-chapters__time">0:00</span>
+                    <p>A file feels like a thing.</p>
+                  </li>
+                  <li>
+                    <span class="cs-chapters__time">0:22</span>
+                    <p>
+                      Decode one agreement, hold the meaning, encode the next.
+                    </p>
+                  </li>
+                  <li>
+                    <span class="cs-chapters__time">0:33</span>
+                    <p>
+                      PNG and WebP agree on pixels. CSV and JSON agree on rows.
+                    </p>
+                  </li>
+                  <li>
+                    <span class="cs-chapters__time">0:54</span>
+                    <p>A real PNG becomes WebP: 1.1 MB to 26 KB.</p>
+                  </li>
+                  <li>
+                    <span class="cs-chapters__time">1:14</span>
+                    <p>A real CSV becomes JSON, with keys and typed values.</p>
+                  </li>
+                  <li>
+                    <span class="cs-chapters__time">1:31</span>
+                    <p>PDF is a labelled demo, not a fake success.</p>
+                  </li>
+                  <li>
+                    <span class="cs-chapters__time">1:40</span>
+                    <p>The browser already carries the translators.</p>
+                  </li>
+                  <li>
+                    <span class="cs-chapters__time">1:52</span>
+                    <p>Nothing leaves the tab.</p>
+                  </li>
+                  <li>
+                    <span class="cs-chapters__time">2:10</span>
+                    <p>A file was never the thing. It was the agreement.</p>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </section>
+
+          <section class="cs-section" id="how" aria-labelledby="how-title">
+            <div class="cs-section__aside">
+              <span class="cs-section__number">04</span>
+              <p class="cs-kicker">How it works</p>
+            </div>
+            <div class="cs-section__body">
+              <h2 id="how-title">
+                The browser already has the translators. Morph conducts them.
+              </h2>
+              <p class="cs-lede">
+                There is no server, no framework, and no runtime dependency
+                beyond the browser APIs. The whole product is a state machine,
+                three conversion paths, one canvas loop, and a small
+                synthesizer.
+              </p>
+
+              <div class="cs-cols">
+                <ol class="cs-steps cs-steps--tight">
+                  <li>
+                    <span class="cs-steps__number" aria-hidden="true">01</span>
+                    <div>
+                      <h3>Images go through Canvas2D.</h3>
+                      <p>
+                        <code>createImageBitmap</code> decodes the file, with an
+                        <code>&lt;img&gt;</code> fallback for formats it cannot
+                        read. The bitmap is drawn to a canvas and encoded again
+                        with <code>toBlob</code> at WebP quality 0.9. Original
+                        dimensions are preserved up to a 7000 px side or 45 MP.
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="cs-steps__number" aria-hidden="true">02</span>
+                    <div>
+                      <h3>Tables go through a small parser.</h3>
+                      <p>
+                        Delimiter detection, quote-aware parsing, duplicate
+                        headers suffixed, and numbers and booleans typed. CSV and
+                        TSV become JSON objects with real keys.
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="cs-steps__number" aria-hidden="true">03</span>
+                    <div>
+                      <h3>JSON is parsed and reindented.</h3>
+                      <p>
+                        The built-in parser reads the file, then writes it back
+                        with two-space indentation. No server, no schema, no
+                        surprise fields.
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="cs-steps__number" aria-hidden="true">04</span>
+                    <div>
+                      <h3>Everything else gets a receipt.</h3>
+                      <p>
+                        PDF is a generated one-page record. JSON from an
+                        arbitrary file is a metadata sheet. An image target from
+                        an unsupported source is a rendered seal. All valid
+                        files, all marked DEMO.
+                      </p>
+                    </div>
+                  </li>
+                </ol>
+
+                <figure class="cs-figure cs-figure--sticky">
+                  <img
+                    src="../src/case-study/images/film-translators.webp"
+                    alt="A frame from the Morph explainer showing createImageBitmap, canvas.toBlob, File.text, and Blob URL around the chamber."
+                    width="1600"
+                    height="900"
+                    loading="lazy"
+                  />
+                  <figcaption>
+                    The four translators the browser already ships, named in the
+                    film. Morph only conducts them.
+                  </figcaption>
+                </figure>
+              </div>
+
+              <div class="cs-table-wrap">
+                <h3>What happens to each route</h3>
+                <table class="cs-routes">
+                  <caption class="sr-only">
+                    Morph conversion routes, their REAL or DEMO badge, and what
+                    each route actually does
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Route</th>
+                      <th scope="col">Badge</th>
+                      <th scope="col">What happens</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">PNG, JPG, WebP, GIF, AVIF, SVG to WebP or PNG</th>
+                      <td data-label="Badge">
+                        <span class="cs-badge cs-badge--real">REAL</span>
+                      </td>
+                      <td data-label="What happens">
+                        Decoded, drawn to Canvas2D, and re-encoded in the tab.
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">CSV or TSV to JSON</th>
+                      <td data-label="Badge">
+                        <span class="cs-badge cs-badge--real">REAL</span>
+                      </td>
+                      <td data-label="What happens">
+                        Parsed, headers deduplicated, cells typed as numbers,
+                        booleans, or strings.
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">JSON to JSON</th>
+                      <td data-label="Badge">
+                        <span class="cs-badge cs-badge--real">REAL</span>
+                      </td>
+                      <td data-label="What happens">
+                        Parsed and reindented with two spaces.
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Any file to PDF</th>
+                      <td data-label="Badge">
+                        <span class="cs-badge cs-badge--demo">DEMO</span>
+                      </td>
+                      <td data-label="What happens">
+                        A one-page transmutation record, not a rendering of the
+                        source.
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">An unsupported pair to JSON or an image</th>
+                      <td data-label="Badge">
+                        <span class="cs-badge cs-badge--demo">DEMO</span>
+                      </td>
+                      <td data-label="What happens">
+                        A metadata sheet or a seal image, clearly labelled.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="cs-code">
+                <p class="cs-code__label">The boundary is data</p>
+                <pre><code>export type ConversionKind = "real" | "demo";
+
+return {
+  blob,
+  filename,
+  kind: "real",
+  note: "Real, local conversion. Re-encoded in this tab with Canvas2D. Nothing was uploaded.",
+};</code></pre>
+              </div>
+
+              <p>
+                The kind drives the badge, the note, the accessible
+                announcement, and the download's accessible label. It is not a
+                label added after the fact. A demo path returns a valid file
+                with the same pipeline, and the interface refuses to call it a
+                conversion.
+              </p>
+            </div>
+          </section>
+
+          <section class="cs-section" id="performance" aria-labelledby="performance-title">
+            <div class="cs-section__aside">
+              <span class="cs-section__number">05</span>
+              <p class="cs-kicker">Performance</p>
+            </div>
+            <div class="cs-section__body">
+              <h2 id="performance-title">
+                One loop, and only while you are looking.
+              </h2>
+              <p class="cs-lede">
+                The chamber is one Canvas2D context and one
+                <code>requestAnimationFrame</code> loop. It stops when the tab is
+                hidden or the stage leaves the viewport. At rest, it is not
+                drawing frames you cannot see.
+              </p>
+              <p>
+                The device pixel ratio is capped at 2, so a 3x phone does not pay
+                for pixels it cannot show. The particle budget is fixed: up to
+                173 glyphs, 40 sparks, 108 ticks, 34 dust motes, and a small
+                ember stream. Reduced motion clears the particles and draws a
+                static ring instead. The result still arrives.
+              </p>
+
+              <dl class="cs-stats">
+                <div>
+                  <dt>Chamber states</dt>
+                  <dd><strong>4</strong><span>idle, ingest, forge, complete</span></dd>
+                </div>
+                <div>
+                  <dt>Canvas loop</dt>
+                  <dd><strong>1</strong><span>no timer drives the drawing</span></dd>
+                </div>
+                <div>
+                  <dt>Offscreen frames</dt>
+                  <dd><strong>0</strong><span>hidden tab, out of view</span></dd>
+                </div>
+                <div>
+                  <dt>Full sequence</dt>
+                  <dd><strong>2.36 s</strong><span>before conversion work</span></dd>
+                </div>
+                <div>
+                  <dt>Input cap</dt>
+                  <dd><strong>60 MB</strong><span>one file at a time</span></dd>
+                </div>
+                <div>
+                  <dt>Audio files</dt>
+                  <dd><strong>0</strong><span>all cues synthesized</span></dd>
+                </div>
+              </dl>
+
+              <div class="cs-budget">
+                <h3>The full-motion chamber budget</h3>
+                <ol>
+                  <li>
+                    <span class="cs-budget__label">File card</span>
+                    <span class="cs-budget__track" aria-hidden="true"
+                      ><span style="width: 18.6%"></span
+                    ></span>
+                    <span class="cs-budget__time">440 ms</span>
+                  </li>
+                  <li>
+                    <span class="cs-budget__label">Shred</span>
+                    <span class="cs-budget__track" aria-hidden="true"
+                      ><span style="width: 20.3%"></span
+                    ></span>
+                    <span class="cs-budget__time">480 ms</span>
+                  </li>
+                  <li>
+                    <span class="cs-budget__label">Recast</span>
+                    <span class="cs-budget__track" aria-hidden="true"
+                      ><span style="width: 27.1%"></span
+                    ></span>
+                    <span class="cs-budget__time">640 ms</span>
+                  </li>
+                  <li>
+                    <span class="cs-budget__label">Anneal</span>
+                    <span class="cs-budget__track" aria-hidden="true"
+                      ><span style="width: 22%"></span
+                    ></span>
+                    <span class="cs-budget__time">520 ms</span>
+                  </li>
+                  <li>
+                    <span class="cs-budget__label">Condense</span>
+                    <span class="cs-budget__track" aria-hidden="true"
+                      ><span style="width: 11.9%"></span
+                    ></span>
+                    <span class="cs-budget__time">280 ms</span>
+                  </li>
+                </ol>
+                <p class="cs-budget__total">
+                  2,360 ms total. Reduced motion compresses this to a short
+                  static pass.
+                </p>
+              </div>
+
+              <figure class="cs-figure">
+                <img
+                  src="../src/case-study/images/film-reduction.webp"
+                  alt="A frame from the Morph explainer showing a 98 percent reduction, with a 1.1 MB PNG bar shrinking to a 26 KB WebP bar."
+                  width="1600"
+                  height="900"
+                  loading="lazy"
+                />
+                <figcaption>
+                  The film's measured run: 1.1 MB PNG to 26 KB WebP. The result
+                  panel reports the same numbers in the live build.
+                </figcaption>
+              </figure>
+
+              <p>
+                The numbers on this page are design budgets and constants from
+                the build, not a lab benchmark. The measured claims are the
+                sample runs in the film and in the result cards, where the
+                source and output bytes are printed by the app. A device matrix
+                is still to come. The limitations say so.
+              </p>
+            </div>
+          </section>
+
+          <section class="cs-section" id="accessibility" aria-labelledby="accessibility-title">
+            <div class="cs-section__aside">
+              <span class="cs-section__number">06</span>
+              <p class="cs-kicker">Accessibility</p>
+            </div>
+            <div class="cs-section__body">
+              <h2 id="accessibility-title">
+                The chamber is decoration. The controls are not.
+              </h2>
+              <p class="cs-lede">
+                Morph is a visual toy, but it is not a canvas-only interface.
+                The file intake, the format choice, the progress, the result, and
+                the download are all real controls with real names.
+              </p>
+
+              <div class="cs-cols">
+                <ul class="cs-list cs-list--tight">
+                  <li>
+                    The drop target is a real button with a dynamic label that
+                    names the current output format.
+                  </li>
+                  <li>
+                    Format chips are buttons with <code>aria-pressed</code>.
+                    They are disabled while the chamber is working.
+                  </li>
+                  <li>
+                    The hidden file input is removed from the tab order. The
+                    visible controls do the work.
+                  </li>
+                  <li>
+                    A polite live region announces the start, the completion,
+                    the size change, and errors.
+                  </li>
+                  <li>
+                    The result panel takes focus when it settles, but never
+                    steals it from the field notes dialog or another field.
+                  </li>
+                  <li>
+                    The download is an anchor with a <code>download</code>
+                    attribute and a descriptive label.
+                  </li>
+                  <li>
+                    Reduced motion skips the particles and shortens transitions.
+                    The result still arrives.
+                  </li>
+                  <li>
+                    The field notes use a native <code>&lt;dialog&gt;</code>.
+                    Escape closes it and focus returns to the trigger.
+                  </li>
+                </ul>
+
+                <div class="cs-keys">
+                  <p class="cs-keys__label">Keyboard and pointer</p>
+                  <dl>
+                    <div>
+                      <dt><kbd>Enter</kbd> or <kbd>Space</kbd></dt>
+                      <dd>Open the file picker from the chamber.</dd>
+                    </div>
+                    <div>
+                      <dt><kbd>Tab</kbd></dt>
+                      <dd>Move through the formats, sample, and download.</dd>
+                    </div>
+                    <div>
+                      <dt><kbd>Ctrl</kbd> + <kbd>V</kbd></dt>
+                      <dd>Paste a file from the clipboard.</dd>
+                    </div>
+                    <div>
+                      <dt>Drop</dt>
+                      <dd>Drag a file anywhere onto the stage.</dd>
+                    </div>
+                    <div>
+                      <dt><kbd>Escape</kbd></dt>
+                      <dd>Close the field notes dialog.</dd>
+                    </div>
+                  </dl>
+                  <p class="cs-keys__note">
+                    On a Mac, use <kbd>Cmd</kbd> instead of <kbd>Ctrl</kbd>.
+                  </p>
+                </div>
+              </div>
+
+              <p>
+                This page follows the same rules: one heading, semantic
+                landmarks, a skip link, visible focus, and no meaning that
+                depends on color alone. The REAL and DEMO badges carry text, and
+                every note repeats the distinction in words.
+              </p>
+            </div>
+          </section>
+
+          <section class="cs-section" id="limitations" aria-labelledby="limitations-title">
+            <div class="cs-section__aside">
+              <span class="cs-section__number">07</span>
+              <p class="cs-kicker">Limitations</p>
+            </div>
+            <div class="cs-section__body">
+              <h2 id="limitations-title">What this does not claim.</h2>
+              <p class="cs-lede">
+                A prototype is more useful when it says where the edges are.
+                These are the current ones.
+              </p>
+
+              <div class="cs-cols">
+                <ul class="cs-list cs-list--tight">
+                  <li>
+                    One file at a time. There is no batch queue and no
+                    conversion history.
+                  </li>
+                  <li>
+                    Conversion runs on the main thread. A very large image can
+                    block the interface.
+                  </li>
+                  <li>The input cap is 60 MB.</li>
+                  <li>
+                    There is no dedicated video, audio, archive, or HEIC route.
+                    Unsupported pairs return a labelled demo artifact.
+                  </li>
+                  <li>
+                    PDF is always a demo record. It is a valid one-page file, not
+                    a rendering of the source.
+                  </li>
+                  <li>
+                    The full sequence is deliberately slower than a bare file
+                    picker. Atmosphere is part of the product, but it is not for
+                    every task.
+                  </li>
+                  <li>
+                    The only network request on the app is Google Fonts. Both
+                    families have system fallbacks. No file is uploaded, stored,
+                    or transmitted.
+                  </li>
+                  <li>
+                    The film is a separate GitHub attachment. The case study
+                    page requests it as metadata on load, or when you press
+                    play.
+                  </li>
+                </ul>
+
+                <figure class="cs-figure cs-figure--phone">
+                  <img
+                    src="../src/case-study/images/mobile.webp"
+                    alt="The Morph home page at a mobile width, with the chamber stacked above the format chips and the main actions."
+                    width="390"
+                    height="970"
+                    loading="lazy"
+                  />
+                  <figcaption>
+                    At 390 px the chamber becomes a column. The controls wrap.
+                    The promise does not.
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </section>
+
+          <section class="cs-section" id="next" aria-labelledby="next-title">
+            <div class="cs-section__aside">
+              <span class="cs-section__number">08</span>
+              <p class="cs-kicker">What is next</p>
+            </div>
+            <div class="cs-section__body">
+              <h2 id="next-title">
+                Widen the machine without breaking the honesty.
+              </h2>
+              <p class="cs-lede">
+                The first version proves the interaction. The next work is
+                evidence, reach, and more real paths.
+              </p>
+
+              <ol class="cs-next">
+                <li>
+                  <span aria-hidden="true">01</span>
+                  <div>
+                    <h3>Move image work off the main thread.</h3>
+                    <p>
+                      Use a worker with OffscreenCanvas so a 45 MP image does not
+                      stall the chamber.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span aria-hidden="true">02</span>
+                  <div>
+                    <h3>Publish a device matrix.</h3>
+                    <p>
+                      Measure conversion time and output size for the sample set
+                      on low, mid, and high hardware.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span aria-hidden="true">03</span>
+                  <div>
+                    <h3>Grow the real set.</h3>
+                    <p>
+                      Add HEIC where the browser can decode it, SVG
+                      rasterization, and an audio path only where the browser API
+                      is real.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span aria-hidden="true">04</span>
+                  <div>
+                    <h3>Cut a 30-second film.</h3>
+                    <p>
+                      A shorter version for a README, a post, and the first ten
+                      seconds of a portfolio.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span aria-hidden="true">05</span>
+                  <div>
+                    <h3>Add an opt-in local history.</h3>
+                    <p>
+                      Recent conversions in IndexedDB. Still no server, still no
+                      upload.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span aria-hidden="true">06</span>
+                  <div>
+                    <h3>Run a second material through the chamber.</h3>
+                    <p>
+                      Prove the interaction is a system, not a one-off skin for
+                      one file type.
+                    </p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </section>
+        </div>
+
+        <section class="cs-cta" aria-labelledby="cta-title">
+          <div class="cs-shell cs-cta__inner">
+            <p class="cs-kicker">
+              <span class="cs-kicker__dot" aria-hidden="true"></span>
+              Try it
+            </p>
+            <h2 id="cta-title">Bring a file. <em>It will not leave.</em></h2>
+            <p>
+              Images convert for real. Tables convert for real. Everything else
+              tells you the truth.
+            </p>
+            <a class="cs-button cs-button--primary" href="../">
+              <span>Open the transmuter</span>
+              <svg viewBox="0 0 16 16" class="icon" aria-hidden="true">
+                <path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6" />
+              </svg>
+            </a>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <footer class="cs-footer">
+      <div class="cs-shell cs-footer__inner">
+        <div>
+          <p class="cs-footer__mark">Morph.</p>
+          <p class="cs-footer__note">
+            A prototype, not a product. Built with TypeScript, Vite, Canvas2D,
+            and Web Audio. The explainer is a Manim film with a synthesized
+            score.
+          </p>
+        </div>
+        <div class="cs-footer__links">
+          <a href="../">Back to the transmuter</a>
+          <a href="https://github.com/jimmerioles/morph">Source on GitHub</a>
+          <a
+            href="https://github.com/jimmerioles/morph/blob/main/docs/explainer/README.md"
+            >Explainer production notes</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

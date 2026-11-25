@@ -1,0 +1,78 @@
+WEBVTT
+
+00:00.000 --> 00:01.371
+Here's a file.
+
+00:02.717 --> 00:13.256
+It feels like a thing. Something you can pick
+up and hand to a friend. But a file isn't a
+thing. It's a sequence of bytes, and a format
+is an agreement about how to read them.
+
+00:13.900 --> 00:21.339
+Read those bytes under the right agreement,
+and you get a photograph. Read the same bytes
+under the wrong one, and you get noise.
+
+00:22.033 --> 00:32.335
+So a conversion is not a transformation of the
+thing itself. It's a translation between
+agreements. Decode one. Hold the meaning in
+the middle. Encode the next.
+
+00:32.983 --> 00:49.501
+The middle is where the work happens. A PNG
+and a WebP disagree about compression,
+headers, almost everything. But they agree on
+what a pixel is. A CSV and a JSON file
+disagree about punctuation. They agree on what
+a row is.
+
+00:50.200 --> 00:53.341
+Morph is a small machine built around that
+middle.
+
+00:53.983 --> 01:13.851
+Drop in a PNG, and the browser decodes it into
+pixels. The canvas paints those pixels, then
+encodes them again as WebP. WebP can spend
+fewer bytes on detail your eye is unlikely to
+miss. That's where most of the ninety eight
+percent goes. Same image, new agreement, and
+it never left this tab.
+
+01:14.550 --> 01:30.467
+Or take a CSV. Rows in, named objects out. The
+header becomes keys. Quoted commas stay inside
+their fields. Numbers stop pretending to be
+text. The JSON is bigger, and that's fine,
+because it carries its own labels now.
+
+01:31.167 --> 01:39.611
+Not every conversion is real. PDF output is a
+labelled demo, a valid file with a clear
+badge, not a fake success.
+
+01:40.350 --> 01:51.754
+The conversion needs no server. The browser
+already carries the translators. Image
+decoders, text parsers, encoders built into
+the canvas. Morph simply conducts them.
+
+01:52.450 --> 02:00.119
+So the file never has to leave. No upload bar,
+no queue, no account. The work happens on the
+machine in front of you.
+
+02:00.817 --> 02:10.322
+That's the quiet part. A file converter used
+to mean someone else's computer. Now it can be
+a tab, a canvas, and a small act of chemistry.
+
+02:11.167 --> 02:16.863
+A file was never the thing. It was the
+agreement. Morph lets you watch the agreement
+change.
+
+02:17.800 --> 02:20.871
+It's live on GitHub Pages. Bring a file.

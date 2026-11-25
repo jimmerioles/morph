@@ -8,6 +8,8 @@ https://github.com/user-attachments/assets/9080c3d3-c0e2-44bb-b816-9a8f5256eacb
 
 Morph is a local file converter built around one interaction: drop a file on the transmuter, watch it shred into glyphs, and collect the result from the other side. The chamber is the product demo, not a video of one, and it is for anyone who wants a quick conversion without uploading a file or creating an account. It is a prototype, and it says so: images, tables, and JSON convert for real in the tab, while unsupported pairs return a valid, clearly labelled demo artifact.
 
+The [case study](https://jimmerioles.github.io/morph/case-study/) goes deeper on the problem, the real/demo boundary, the explainer film, and the build.
+
 ## What it does
 
 - **Images to WebP or PNG.** Canvas2D re-encodes the file in the tab. Original dimensions are preserved up to a 7000 px side or 45 MP.
@@ -23,11 +25,11 @@ Morph is a local file converter built around one interaction: drop a file on the
 ```bash
 npm install
 npm run dev      # http://localhost:5173
-npm run build    # tsc + vite build
+npm run build    # tsc + vite build the app and case study
 npm run preview  # serve the production build
 ```
 
-Node 22 or newer. The only network request is Google Fonts (Instrument Serif and Inter); both have system fallbacks, so the page works offline.
+Node 22 or newer. The app's only network request is Google Fonts (Instrument Serif and Inter); both have system fallbacks, so the page works offline. The case study embeds the explainer from GitHub.
 
 ## Use it
 

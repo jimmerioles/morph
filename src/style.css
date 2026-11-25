@@ -222,6 +222,7 @@ input:focus-visible {
   color: var(--cream-soft);
   font-size: 12px;
   letter-spacing: 0.015em;
+  text-decoration: none;
   cursor: pointer;
   transition: color 0.25s ease, border-color 0.25s ease;
 }
@@ -229,6 +230,10 @@ input:focus-visible {
 .nav-link:hover {
   color: var(--cream);
   border-bottom-color: var(--copper);
+}
+
+.nav-case {
+  color: var(--copper-bright);
 }
 
 .sound {
