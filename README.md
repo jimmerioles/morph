@@ -1,10 +1,18 @@
-# Morph
+<div align="center">
 
-File alchemy in the browser: drop a file into the chamber, get another format out.
+https://github.com/user-attachments/assets/9080c3d3-c0e2-44bb-b816-9a8f5256eacb
+
+[![Tests](https://github.com/jimmerioles/morph/actions/workflows/test.yml/badge.svg)](https://github.com/jimmerioles/morph/actions/workflows/test.yml) [![Deploy to GitHub Pages](https://github.com/jimmerioles/morph/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/jimmerioles/morph/actions/workflows/deploy-pages.yml)
 
 **Live demo:** https://jimmerioles.github.io/morph/
 
-https://github.com/user-attachments/assets/9080c3d3-c0e2-44bb-b816-9a8f5256eacb
+**Case study:** https://jimmerioles.github.io/morph/case-study/
+
+</div>
+
+# Morph
+
+**File alchemy in the browser: drop a file into the chamber, get another format out.**
 
 Morph is a local file converter built around one interaction: drop a file on the transmuter, watch it shred into glyphs, and collect the result from the other side. The chamber is the product demo, not a video of one, and it is for anyone who wants a quick conversion without uploading a file or creating an account. It is a prototype, and it says so: images, tables, and JSON convert for real in the tab, while unsupported pairs return a valid, clearly labelled demo artifact.
 
