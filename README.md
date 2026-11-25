@@ -68,6 +68,4 @@ Morph is a static Vite + TypeScript app. `convert.ts` does the real work in the 
 
 Built with Vite, TypeScript, Canvas2D, and Web Audio. Type is Instrument Serif and Inter from Google Fonts.
 
-The 2:28 explainer at the top has production notes and subtitles in [docs/explainer](docs/explainer/README.md).
-
 License: none declared yet.
