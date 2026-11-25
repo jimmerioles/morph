@@ -1,83 +1,60 @@
-# Morph — File Alchemy
+# Morph
+
+File alchemy in the browser: drop a file into the chamber, get another format out.
 
 **Live demo:** https://jimmerioles.github.io/morph/
 
-A single-screen prototype of a file converter whose hero **is** the converter. Drop a file onto the transmuter; it is shredded into glyphs, pulled through a copper-and-glass chamber, and rebuilt as another format. The result drops out with a ding.
+https://github.com/user-attachments/assets/f8d4b648-efae-4554-82d6-eef1e484666a
 
-![Morph — file alchemy](docs/morph-idle.webp)
+Morph is a local file converter built around one interaction: drop a file on the transmuter, watch it shred into glyphs, and collect the result from the other side. The chamber is the product demo, not a video of one, and it is for anyone who wants a quick conversion without uploading a file or creating an account. It is a prototype, and it says so: images, tables, and JSON convert for real in the tab, while unsupported pairs return a valid, clearly labelled demo artifact.
 
-Static-first, one signature interaction, a physical metaphor, synthesized sound only after a gesture, and a reduced-motion path. No frameworks, no uploads.
+## What it does
+
+- **Images to WebP or PNG.** Canvas2D re-encodes the file in the tab. Original dimensions are preserved up to a 7000 px side or 45 MP.
+- **CSV, TSV, or JSON to JSON.** Quote-aware parsing, delimiter detection, duplicate-header handling, and typed numbers and booleans.
+- **PDF output is a demo.** The result is a valid one-page transmutation record, marked `DEMO`, not a rendering of the source.
+- **Everything else is labelled.** Image targets from unsupported sources and JSON from arbitrary files return a valid demo artifact, never a fake success.
+- **Local by default.** One file at a time, up to 60 MB. Nothing is uploaded.
+- **Sound after a gesture.** Shred, forge, and ding are synthesized with Web Audio. The mute toggle persists.
+- **Reduced motion and keyboard access.** Particles are skipped, the canvas goes static, and the result still arrives. The file picker, format chips, and download are keyboard accessible.
 
 ## Run it
 
 ```bash
 npm install
-npm run dev
-```
-
-Open the URL Vite prints (usually `http://localhost:5173`).
-
-```bash
+npm run dev      # http://localhost:5173
 npm run build    # tsc + vite build
 npm run preview  # serve the production build
 ```
 
-The only network request is Google Fonts (Instrument Serif + Inter). Both have system fallbacks, so the page still works offline.
+Node 22 or newer. The only network request is Google Fonts (Instrument Serif and Inter); both have system fallbacks, so the page works offline.
 
-## What's real
+## Use it
 
-These conversions happen locally in the browser:
+- Drop a file on the chamber, click the chamber or the main button, or paste from the clipboard.
+- Pick a target with the format chips: WebP, PNG, JSON, PDF.
+- Download the result. **Convert another** resets the chamber.
+- **Try a sample** builds a target-appropriate file. **How it works** explains the real/demo boundary.
+- Changing the target after a result requires **Convert another** first.
 
-- **Images → WebP / PNG** — `createImageBitmap` (with an `<img>` fallback), Canvas2D re-encode, `canvas.toBlob()`. Original pixel dimensions are preserved, up to a 7000 px / 45 MP safety cap.
-- **CSV / TSV → JSON** — a quote-aware parser with delimiter detection, duplicate-header handling, and typed values.
-- **JSON → JSON** — parse and reindent.
+## How it works
 
-Everything else is deliberately a **demo artifact**:
+Morph is a static Vite + TypeScript app. `convert.ts` does the real work in the tab: Canvas2D for images, a small parser for delimited text, and the built-in JSON parser for JSON. `chamber.ts` draws the ring and particles with Canvas2D, `audio.ts` synthesizes the sound, and `main.ts` holds the state machine, file intake, focus handling, and reduced-motion path. See [ARCHITECTURE.md](ARCHITECTURE.md) for the module map and data flow.
 
-- PDF target → a valid one-page PDF transmutation record, generated in code.
-- JSON target → a metadata JSON record.
-- WebP / PNG target from a non-image, or an image the browser cannot decode → a rendered seal image.
+## Tests
 
-Demo results carry a `DEMO` badge and a note explaining that the output is not a true content conversion. Image and CSV results carry `REAL`. The "How it works" dialog repeats this distinction.
+No automated suite yet. `npm run build` runs `tsc` and the production build; the conversion paths are checked by hand in the browser.
 
-## Interactions
+## Limits
 
-- **Drop** a file on the chamber, **click** the chamber/CTA to browse, or **paste** from the clipboard.
-- **Try a sample** adapts to the selected target: an original Canvas painting (`orrery-no-7.png`) for image targets, a CSV for JSON, and field notes for PDF.
-- Choose a target with the format chips: WebP, PNG, JSON, PDF.
-- The file card flies in, shatters into Canvas glyphs, and the ring spins while the result is forged. The result card drops in with a synthesized bell.
-- **Download** is a real blob download. **Convert another** resets the chamber.
-- The sound toggle mutes the Web Audio synth; the preference persists in `localStorage`.
-- Drag-over highlights the ring and changes the prompt to "Release it."
+- One file at a time. No batch queue or conversion history.
+- Conversion runs on the main thread. Very large images can block the UI.
+- No video, audio, archive, or HEIC conversion.
 
-## Motion and accessibility
+## Credits
 
-- The chamber, glyph particles, sparks, and idle dust are Canvas2D. Cards, copy, progress, and result UI are DOM.
-- With `prefers-reduced-motion: reduce`, particles are skipped, the canvas is static, and progress fades are shortened; the result still arrives.
-- The canvas loop pauses when the tab is hidden or the stage leaves the viewport (`IntersectionObserver` + `visibilitychange`).
-- The file picker is a real focusable button; format chips are pressed-state buttons; the download is an anchor with a `download` attribute.
-- The hidden file input is not in the tab order. The result panel receives focus after completion so screen-reader and keyboard users land on the download.
-- Progress is visual; announcements are limited to start, completion, and errors via an `aria-live` status.
-- Layouts checked at 1280 × 800, 768 × 1024, 390 × 844, and 320 × 700.
+Built with Vite, TypeScript, Canvas2D, and Web Audio. Type is Instrument Serif and Inter from Google Fonts.
 
-## Files
+The 2:28 explainer at the top has production notes and subtitles in [docs/explainer](docs/explainer/README.md).
 
-```
-index.html          markup, headline copy, dialog, SVG sigil
-src/main.ts         UI state machine, drag/drop/paste, result UI, focus + motion handling
-src/chamber.ts      Canvas2D ring, glyph vortex, sparks, progress arc, visibility pausing
-src/convert.ts      real conversions, demo artifacts, generated samples
-src/audio.ts        Web Audio shred / forge / ding / error synthesis
-src/style.css       warm alchemical identity, responsive layout, reduced-motion rules
-```
-
-## Rough edges / next steps
-
-This is a prototype, not a production converter.
-
-- No PDF parsing, video, audio, archive, or HEIC transcoding. Unsupported pairs return a labelled demo artifact.
-- Conversion runs on the main thread. A Worker and streaming codecs would be the next step for very large images.
-- One file at a time; no batch queue or history. Changing the target after a result requires "Convert another" first.
-- The generated PDF is a record, not a rendering of the source. PDF target is intentionally marked demo-only.
-- Sample art and demo seals are drawn with Canvas2D; if the display serif is still loading, they use Georgia.
-- Possible next steps: format-aware file filters, a conversion history strip, drag-to-share, a service-worker offline shell, and optional WebAssembly codecs for real PDF/video support.
+License: none declared yet.

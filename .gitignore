@@ -2,3 +2,7 @@ node_modules/
 dist/
 .DS_Store
 *.log
+
+# Explainer media is published as a release asset and README attachment.
+video/*.mp4
+video/poster.png
