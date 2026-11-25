@@ -17,7 +17,8 @@ happen in the tab you already have open.
 - The original audio starts at zero. Duration, narration, music, and cue timing
   are unchanged.
 - The MP4 is not committed to the repository. The README uses the uploaded
-  attachment; the release asset is the same file.
+  attachment; the [release asset](https://github.com/jimmerioles/morph/releases/tag/explainer-v1)
+  is the same file.
 
 [`morph-explainer.srt`](morph-explainer.srt) in this folder is the narration,
 timed to the picture.
